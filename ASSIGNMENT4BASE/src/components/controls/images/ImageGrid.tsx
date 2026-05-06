@@ -1,27 +1,26 @@
 import { type ImageCell } from '@/core';
-import type { ReactNode } from 'react';
 
 type ImageGridProps = {
-  results: ImageCell[];
-  onClick?: (id: number) => void;
-  children?: (item: ImageCell) => ReactNode;
+  images: ImageCell[];
+  onClick?: (image: ImageCell) => void;
 };
 
-export const ImageGrid = ({ results, onClick, children }: ImageGridProps) => {
+export const ImageGrid = ({ images, onClick }: ImageGridProps) => {
   return (
-    <div className="grid grid-cols-5 gap-5 w-full">
-      {results.map((result) => (
+    <div className="grid grid-cols-5 gap-5">
+      {images.map((image) => (
         <div
-          key={result.id}
-          className="relative bg-gray-800 rounded-lg overflow-hidden cursor-pointer hover:scale-[1.02] transition"
-          onClick={() => onClick?.(result.id)}
+          key={image.id}
+          className={`relative overflow-hidden rounded-lg bg-gray-800 ${onClick ? 'cursor-pointer transition hover:scale-[1.02]' : ''}`}
+          onClick={() => onClick?.(image)}
         >
-          {children?.(result)}
-          <img className="w-full h-[280px] object-cover" src={result.imageUrl} alt={result.primaryText} />
-          <div className="p-3 text-center">
-            <p className="text-sm font-semibold truncate">{result.primaryText}</p>
-            {result.secondaryText && <p className="text-gray-400 text-xs">{result.secondaryText}</p>}
-          </div>
+          <img src={image.imageUrl} alt={image.primaryText} />
+          {(image.primaryText || image.secondaryText) && (
+            <div className="flex flex-col p-3 text-center">
+              {image.primaryText && <p className="truncate text-sm font-semibold">{image.primaryText}</p>}
+              {image.secondaryText && <p className="truncate text-sm font-semibold text-blue-400">{image.secondaryText}</p>}
+            </div>
+          )}
         </div>
       ))}
     </div>

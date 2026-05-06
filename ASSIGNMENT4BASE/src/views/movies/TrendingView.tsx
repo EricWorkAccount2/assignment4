@@ -1,12 +1,11 @@
-import { ButtonGroup, FavoritesOverlay, ImageGrid, Pagination } from '@/components';
+import { ButtonGroup, ImageGrid, Pagination } from '@/components';
 import { type ImageCell, IMAGE_BASE_URL, TRENDING_ENDPOINT } from '@/core';
-import { useTmdb, useUserContext } from '@/hooks';
+import { useTmdb, } from '@/hooks';
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const TrendingView = () => {
   const navigate = useNavigate();
-  const { favorites, toggleFavorite } = useUserContext();
   const [page, setPage] = useState<number>(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const interval = searchParams.get('interval') || 'day';
@@ -22,7 +21,7 @@ export const TrendingView = () => {
   }));
 
   if (!data) {
-    return <p className="text-center text-gray-400">Loading...</p>;
+    return <p className="text-center text-gray-400">No rush</p>;
   }
 
   return (
@@ -48,9 +47,28 @@ export const TrendingView = () => {
           />
         </div>
       </div>
-      <ImageGrid results={gridData} onClick={(id) => navigate(`/${mediaType}/${id}`)}>
-        {(item) => <FavoritesOverlay item={item} favorites={favorites} toggleFavorite={toggleFavorite} />}
-      </ImageGrid>
+      {/* <ImageGrid images={gridData} onClick={(result) => navigate(`/${mediaType}/${result.id}/images`)}>
+      </ImageGrid> */}
+
+      {/* <ImageGrid
+        images={gridData}
+        onClick={(image) =>
+          navigate(`/movie/${image.id}/credits`)
+        }
+      /> */}
+
+      <ImageGrid
+            images={gridData}
+            onClick={(image) =>
+              navigate(
+                mediaType === 'movie'
+                  ? `/movie/${image.id}/credits`
+                  : `/tv/${image.id}/seasons?season=0`
+              )
+            }
+          />
+
+
       <Pagination page={page} maxPages={data.total_pages} onClick={setPage} />
     </section>
   );

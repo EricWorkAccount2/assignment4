@@ -4,7 +4,6 @@ import {
   CreditsView,
   EpisodeView,
   ErrorView,
-  FavoritesView,
   GenreView,
   HomeView,
   ImagesView,
@@ -14,7 +13,6 @@ import {
   ReviewsView,
   SearchView,
   SeasonsView,
-  SettingsView,
   TelevisionView,
   TrendingView,
   TrailersView,
@@ -44,15 +42,10 @@ export const App = () => {
         <Route path="/tv" element={<TelevisionView />} />
         <Route path="/tv/:id/seasons" element={<SeasonsView />} />
         <Route path="/tv/:id/seasons/episode" element={<EpisodeView />} />
-        
         {/* Person */}
         <Route path="/person/:id" element={<PersonView />} />
         <Route path="/person/:id/career" element={<CareerView />} />
         <Route path="/person/:id/images" element={<ImagesView />} />
-        
-        {/* User */}
-        <Route path="/favorites" element={<FavoritesView />} />
-        <Route path="/settings" element={<SettingsView />} />
       </Route>
       <Route path="*" element={<ErrorView />} />
     </Routes>

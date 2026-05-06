@@ -1,7 +1,10 @@
 export const MOVIE_ENDPOINT = 'https://api.themoviedb.org/3/movie';
 export const NOW_PLAYING_ENDPOINT = 'https://api.themoviedb.org/3/movie/now_playing';
-export const TRENDING_ENDPOINT = 'https://api.themoviedb.org/3/trending/movie';
+export const TRENDING_ENDPOINT = 'https://api.themoviedb.org/3/trending';
+export const DISCOVER_ENDPOINT = 'https://api.themoviedb.org/3/discover';
 export const SEARCH_ENDPOINT = 'https://api.themoviedb.org/3/search/movie';
-export const TV_ENDPOINT = 'https://api.themoviedb.org/3/tv';
+// export const TV_ENDPOINT = 'https://api.themoviedb.org/3/tv';
+export const TV_ENDPOINT = 'https://api.themoviedb.org/3/genre/tv/list';
 export const PERSON_ENDPOINT = 'https://api.themoviedb.org/3/person';
 export const SEARCH_MULTI_ENDPOINT = 'https://api.themoviedb.org/3/search/multi';
+export const DETAILS_ENDPOINT = 'https://api.themoviedb.org/3/tv/{series_id}/season/{season_number}';

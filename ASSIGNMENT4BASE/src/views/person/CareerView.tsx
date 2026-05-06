@@ -22,7 +22,7 @@ export const CareerView = () => {
       <h1 className="text-3xl font-bold text-white">{personData.name} - Career</h1>
       
       {allCredits.length > 0 ? (
-        <ImageGrid items={allCredits} type="all" />
+        <ImageGrid images={allCredits}/>
       ) : (
         <p className="text-gray-400">No credits found.</p>
       )}

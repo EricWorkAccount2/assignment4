@@ -52,7 +52,7 @@ export const TelevisionView = () => {
 
       {data?.results && (
         <>
-          <ImageGrid results={gridData} onClick={(id) => navigate(`/tv/${id}/seasons`)} />
+          <ImageGrid images={gridData} onClick={(id) => navigate(`/tv/${id}/seasons`)} />
           <Pagination
             page={page}
             maxPages={data.total_pages}

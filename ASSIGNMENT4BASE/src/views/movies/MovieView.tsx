@@ -1,12 +1,10 @@
 import { DetailItem, LinkGroup, Modal } from '@/components';
-import { type MovieRespsonse, ICON_SIZE, IMAGE_BASE_URL, MOVIE_ENDPOINT, ORIGINAL_IMAGE_BASE_URL } from '@/core';
-import { useTmdb, useUserContext } from '@/hooks';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { type MovieRespsonse, IMAGE_BASE_URL, MOVIE_ENDPOINT, ORIGINAL_IMAGE_BASE_URL } from '@/core';
+import { useTmdb } from '@/hooks';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 export const MovieView = () => {
   const navigate = useNavigate();
-  const { favorites, toggleFavorite } = useUserContext();
   const { id } = useParams();
   const { data } = useTmdb<MovieRespsonse>(`${MOVIE_ENDPOINT}/${id}`, { append_to_response: 'videos' }, [id]);
 
@@ -28,22 +26,6 @@ export const MovieView = () => {
           <div className="overflow-y-auto space-y-4">
             <div className="flex justify-between items-center">
               <h1 className="text-3xl font-bold">{data.title}</h1>
-              <button
-                onClick={() =>
-                  toggleFavorite({
-                    id: data.id,
-                    imageUrl: data.poster_path,
-                    primaryText: data.title,
-                  })
-                }
-                className="p-2 rounded-full hover:bg-black/40 transition"
-              >
-                {favorites.has(data.id) ? (
-                  <FaHeart size={ICON_SIZE} className="text-blue-500" />
-                ) : (
-                  <FaRegHeart size={ICON_SIZE} className="text-white" />
-                )}
-              </button>
             </div>
             <p className="text-gray-300 leading-relaxed">{data.overview}</p>
             <div className="grid grid-cols-2 gap-4 pt-2">

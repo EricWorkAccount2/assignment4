@@ -14,5 +14,4 @@ export * from '@/views/site/HomeView';
 export * from '@/views/television/EpisodeView';
 export * from '@/views/television/SeasonsView';
 export * from '@/views/television/TelevisionView';
-export * from '@/views/user/FavoritesView';
-export * from '@/views/user/SettingsView';
+
